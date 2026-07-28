@@ -1,0 +1,65 @@
+.auth-shell {
+  min-height: 100vh;
+  background: #fff;
+}
+
+.auth-visual {
+  min-height: 100vh;
+  background: #231d1e;
+}
+
+.auth-visual__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.auth-form-panel {
+  min-height: 100vh;
+}
+
+.auth-form {
+  width: min(100%, 664px);
+}
+
+.auth-field {
+  transition: box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.auth-field:focus-within {
+  background: #fff;
+  box-shadow: 0 0 0 4px var(--qm-focus);
+}
+
+.auth-field input:focus-visible {
+  outline: none;
+}
+
+.auth-submit {
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.auth-submit:hover {
+  background: var(--qm-brand-hover);
+}
+
+.auth-submit:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 767px) {
+  .auth-visual {
+    min-height: 300px;
+    height: 44vh;
+  }
+
+  .auth-form-panel {
+    min-height: auto;
+  }
+
+  .auth-form {
+    width: 100%;
+  }
+}
