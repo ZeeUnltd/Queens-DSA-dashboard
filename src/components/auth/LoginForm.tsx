@@ -131,7 +131,7 @@ function LoginForm() {
           />
           <span>{LOGIN_COPY.rememberMe}</span>
         </label>
-        <a className="font-semibold text-qm-brand underline-offset-4 hover:underline focus:outline-none focus-visible:ring-4 focus-visible:ring-qm-brand/20" href="#forgot-password">
+        <a className="font-semibold text-qm-brand underline-offset-4 hover:underline focus:outline-none focus-visible:ring-4 focus-visible:ring-qm-brand/20" href="/reset-password">
           {LOGIN_COPY.forgotPassword}
         </a>
       </div>
