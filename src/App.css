@@ -5,17 +5,17 @@
 
 .auth-visual {
   min-height: 100vh;
-  background: #231d1e;
+  background: #ffffff;
+  border-radius: 20px;
 }
 
 .auth-visual__image {
   display: block;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   object-fit: cover;
   object-position: center;
 }
-
 .auth-form-panel {
   min-height: 100vh;
 }
@@ -61,5 +61,25 @@
 
   .auth-form {
     width: 100%;
+  }
+}
+.auth-shell {
+  min-height: 100dvh;
+}
+
+@media (min-width: 768px) {
+  .auth-shell {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .auth-visual,
+  .auth-form-panel {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .auth-form-panel {
+    overflow-y: auto;
   }
 }

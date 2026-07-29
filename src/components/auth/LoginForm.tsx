@@ -44,7 +44,7 @@ function LoginForm() {
   }
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit} noValidate>
+    <form className="auth-form overflow-auto" onSubmit={handleSubmit} noValidate>
       <header className="mb-12">
         <h1 className="text-[30px] font-bold leading-[1.15] tracking-[-0.03em] text-qm-ink sm:text-[34px]">
           {LOGIN_COPY.title}
@@ -116,14 +116,18 @@ function LoginForm() {
       </div>
 
       <div className="mt-8 flex items-center justify-between gap-4 text-base">
-        <label className="flex cursor-pointer items-center gap-3 text-qm-muted" htmlFor="remember-me">
+        <label className="flex cursor-pointer items-center gap-2 text-qm-muted" htmlFor="remember-me">
           <input
-            className="h-6 w-6 rounded-md border-qm-border accent-qm-brand focus:ring-qm-brand"
+            className="peer sr-only"
             id="remember-me"
             name="rememberMe"
             type="checkbox"
             checked={values.rememberMe}
             onChange={(event) => updateValue('rememberMe', event.target.checked)}
+          />
+          <span
+            aria-hidden="true"
+            className="relative h-4 w-4 shrink-0 rounded-[3px] border border-[#bdbdbd] bg-white transition-colors after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:text-[11px] after:font-bold after:leading-none after:text-white after:content-['✓'] peer-checked:border-qm-brand peer-checked:bg-qm-brand peer-focus-visible:ring-4 peer-focus-visible:ring-qm-brand/20"
           />
           <span>{LOGIN_COPY.rememberMe}</span>
         </label>
@@ -132,7 +136,7 @@ function LoginForm() {
         </a>
       </div>
 
-      <button className="auth-submit mt-10 w-full rounded-full bg-qm-brand px-6 py-5 text-base font-medium text-white focus:outline-none focus-visible:ring-4 focus-visible:ring-qm-brand/25" type="submit">
+      <button className="auth-submit mt-10 w-full rounded-full bg-qm-brand px-6 py-5 text-base font-medium text-white focus:outline-none focus-visible:ring-4 focus-visible:ring-qm-brand/25 cursor-pointer" type="submit">
         {LOGIN_COPY.submit}
       </button>
 

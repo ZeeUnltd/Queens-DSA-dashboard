@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react'
-import desktopImage from '../../assets/Desktop - 10.png'
+import desktopImage from '../../assets/portrait-cheerful-woman-home-office-opening-laptop 1.png'
 
 type AuthShellProps = PropsWithChildren
 
 function AuthShell({ children }: AuthShellProps) {
   return (
-    <main className="auth-shell grid min-h-screen md:grid-cols-2">
-      <section className="auth-visual overflow-hidden p-4 md:p-6" aria-label="QueensMoni brand">
+    <main className="auth-shell grid min-h-screen md:grid-cols-2 p-4 md:p-6">
+      <section className="auth-visual overflow-hidden hidden lg:block" aria-label="QueensMoni brand">
         <img
           className="auth-visual__image rounded-[20px]"
           src={desktopImage}
@@ -20,5 +20,5 @@ function AuthShell({ children }: AuthShellProps) {
     </main>
   )
 }
-
+ 
 export default AuthShell
