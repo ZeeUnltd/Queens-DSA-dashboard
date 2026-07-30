@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, CalendarDays, Download, Search } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarDays, Download, Search, ChevronLeft, ChevronRight } from 'lucide-react'
 import { accountsOpenedFixture } from '../../fixtures/dashboard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -46,11 +46,25 @@ function AccountsOpenedView() {
         </Table>
         <nav className="flex items-center justify-between border-t border-[#f1f1f1] px-5 py-3 text-xs text-qm-muted" aria-label="Accounts pagination">
           <button className="flex items-center gap-2 rounded-md border border-[#eeeeee] px-3 py-2" type="button"><ArrowLeft className="h-3.5 w-3.5" />Previous</button>
-          <div className="hidden gap-5 sm:flex"><span className="rounded bg-[#fff4f4] px-3 py-2 text-qm-brand">1</span><span>2</span><span>3</span><span>…</span><span>8</span><span>9</span><span>10</span></div>
+
+          <div className="flex items-center justify-center gap-2">
+            {[1, 2, 3, 4, 5].map(page => (
+              <Button key={page} variant={page === 1 ? 'default' : 'outline'} size="icon" className="h-9 w-9">
+                {page}
+              </Button>
+            ))}
+          </div>
+
           <button className="flex items-center gap-2 rounded-md border border-[#eeeeee] px-3 py-2" type="button">Next<ArrowRight className="h-3.5 w-3.5" /></button>
         </nav>
       </div>
+
+      {/* <div className="hidden gap-5 sm:flex"><span className="rounded bg-[#fff4f4] px-3 py-2 text-qm-brand">1</span><span>2</span><span>3</span><span>…</span><span>8</span><span>9</span><span>10</span></div> */}
+      {/* Pagination Controls */}
+      {/* <Button variant="outline" size="icon" className="h-5 w-5"><ChevronLeft className="h-4 w-4" /></Button> */}
+      {/* <Button variant="outline" size="icon" className="h-9 w-9"><ChevronRight className="h-4 w-4" /></Button> */}
     </section>
+
   )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import eyeSlash from '../../assets/eye-slash.svg'
+import { Eye, EyeOff } from 'lucide-react'
 import { LOGIN_COPY } from '../../constants/login'
 import type { LoginFieldErrors, LoginFormValues } from '../../types/auth'
 
@@ -104,7 +104,11 @@ function LoginForm() {
               aria-label={showPassword ? 'Hide password' : 'Show password'}
               onClick={() => setShowPassword((current) => !current)}
             >
-              <img className="h-5 w-5" src={eyeSlash} alt="" aria-hidden="true" />
+              {showPassword ? (
+                <Eye className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <EyeOff className="h-5 w-5" aria-hidden="true" />
+              )}
             </button>
           </div>
           {errors.password ? (

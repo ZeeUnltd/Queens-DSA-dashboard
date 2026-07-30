@@ -33,11 +33,11 @@ type DashboardShellProps = PropsWithChildren<{
 function DashboardShell({ activeView, children }: DashboardShellProps) {
   return (
     <TooltipProvider>
-      <SidebarProvider style={{ '--sidebar-width': '13rem' } as CSSProperties}>
+      <SidebarProvider  style={{ '--sidebar-width': '13rem' } as CSSProperties}>
         <Sidebar className="border-r border-[#f2f2f2] bg-white" collapsible="offcanvas">
           <SidebarHeader className="px-8 pb-10 pt-6">
             <Link to="/dashboard" aria-label="QueensMonie dashboard">
-              <img className="h-auto w-[124px]" src={brandLogo} alt="QueensMonie" />
+              <img className="h-auto w-40.75" src={brandLogo} alt="QueensMonie" />
             </Link>
           </SidebarHeader>
 
@@ -67,11 +67,11 @@ function DashboardShell({ activeView, children }: DashboardShellProps) {
 
           <SidebarFooter className="gap-7 px-5 pb-6">
             <a className="flex items-center gap-2 text-sm font-medium text-qm-ink" href="#help-center">
-              <Icons.group className="h-[19px] w-[19px]" />
+              <Icons.group className="h-4.75 w-4.75" />
               {DASHBOARD_COPY.helpCenter}
             </a>
             <Link className="flex items-center gap-2 text-sm font-medium text-qm-brand" to="/login">
-              <LogOut className="h-[19px] w-[19px]" />
+              <LogOut className="h-4.75 w-4.75" />
               {DASHBOARD_COPY.logout}
             </Link>
           </SidebarFooter>
@@ -92,7 +92,7 @@ function DashboardShell({ activeView, children }: DashboardShellProps) {
               </Link>
             </div>
           </header>
-          <div className="mx-auto w-full max-w-[1220px] px-5 py-8 md:px-12 md:py-9">{children}</div>
+          <div className="mx-auto w-full px-5 py-8 md:px-12 md:py-9">{children}</div>
         </main>
       </SidebarProvider>
     </TooltipProvider>
