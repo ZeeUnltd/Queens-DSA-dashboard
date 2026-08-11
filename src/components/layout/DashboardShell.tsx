@@ -4,6 +4,7 @@ import { LogOut, Menu } from 'lucide-react'
 import brandLogo from '../../assets/Brand-Logo.svg'
 import { DASHBOARD_COPY, DASHBOARD_NAVIGATION } from '../../constants/dashboard'
 import { Icons } from '../../constants/icons'
+import { useAuth } from '../../context/AuthContext'
 import type { DashboardView } from '../../types/dashboard'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
@@ -31,6 +32,15 @@ type DashboardShellProps = PropsWithChildren<{
 }>
 
 function DashboardShell({ activeView, children }: DashboardShellProps) {
+  const { session, logout } = useAuth()
+  const user = session?.userDetails
+  const fullName = `${user?.firstName ?? ''} ${user?.lastName ?? ''}`.trim()
+  const initials = `${user?.firstName?.[0] ?? ''}${user?.lastName?.[0] ?? ''}`.toUpperCase()
+  const handleLogout = () => {
+    logout()
+    window.location.assign('/login')
+  }
+
   return (
     <TooltipProvider>
       <SidebarProvider  style={{ '--sidebar-width': '13rem' } as CSSProperties}>
@@ -43,7 +53,7 @@ function DashboardShell({ activeView, children }: DashboardShellProps) {
 
           <SidebarContent className="px-3">
             <SidebarMenu className="gap-3">
-              {DASHBOARD_NAVIGATION.map((item) => {
+              {DASHBOARD_NAVIGATION.filter((item) => user?.isRM || !['accounts-opened', 'balance-movements'].includes(item.id)).map((item) => {
                 const Icon = navigationIcons[item.id]
                 const isActive = item.id === activeView
 
@@ -70,10 +80,10 @@ function DashboardShell({ activeView, children }: DashboardShellProps) {
               <Icons.group className="h-4.75 w-4.75" />
               {DASHBOARD_COPY.helpCenter}
             </a>
-            <Link className="flex items-center gap-2 text-sm font-medium text-qm-brand" to="/login">
+            <button className="flex items-center gap-2 text-sm font-medium text-qm-brand" type="button" onClick={handleLogout}>
               <LogOut className="h-4.75 w-4.75" />
               {DASHBOARD_COPY.logout}
-            </Link>
+            </button>
           </SidebarFooter>
         </Sidebar>
 
@@ -86,10 +96,10 @@ function DashboardShell({ activeView, children }: DashboardShellProps) {
               <button className="rounded-full text-qm-brand focus:outline-none focus-visible:ring-4 focus-visible:ring-qm-brand/20" type="button" aria-label="Notifications">
                 <Icons.notification className="h-[18px] w-[18px]" />
               </button>
-              <Link className="flex items-center gap-2 font-medium text-qm-brand" to="/login">
-                <Avatar className="h-8 w-8 border border-qm-border"><AvatarFallback className="bg-[#edf3f8] text-[10px] font-bold text-qm-brand">CA</AvatarFallback></Avatar>
-                <span className="hidden text-left sm:block"><span className="block text-[10px] font-semibold text-qm-ink">Chukwu Abubakr</span><span className="block text-[10px] text-qm-brand">Sign Out</span></span>
-              </Link>
+              <button className="flex items-center gap-2 font-medium text-qm-brand" type="button" onClick={handleLogout}>
+                <Avatar className="h-8 w-8 border border-qm-border"><AvatarFallback className="bg-[#edf3f8] text-[10px] font-bold text-qm-brand">{initials}</AvatarFallback></Avatar>
+                <span className="hidden text-left sm:block"><span className="block text-[10px] font-semibold text-qm-ink">{fullName}</span><span className="block text-[10px] text-qm-brand">Sign Out</span></span>
+              </button>
             </div>
           </header>
           <div className="mx-auto w-full px-5 py-8 md:px-12 md:py-9">{children}</div>

@@ -16,7 +16,9 @@
 }
 
 .auth-visual__overlay {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.2) 48%, rgba(0, 0, 0, 0.76) 100%);
+  background: 
+  linear-gradient(180deg, rgba(0, 0, 0, 0.08) 36%, rgba(0, 0, 0, 0.2) 79%, rgba(0, 0, 0, 22.76) 100%);
+  /* linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.2) 48%, rgba(0, 0, 0, 0.76) 100%); */
   pointer-events: none;
 }
 
@@ -32,12 +34,15 @@
 }
 
 .auth-field {
+  box-sizing: border-box;
+  border: 1px solid transparent;
   transition: box-shadow 160ms ease, background-color 160ms ease;
 }
 
 .auth-field:focus-within {
   background: #fff;
-  box-shadow: 0 0 0 4px var(--qm-focus);
+  border-color: var(--qm-brand);
+  box-shadow: 0 0 0 3px var(--qm-focus);
 }
 
 .auth-field input:focus-visible {
@@ -54,6 +59,12 @@
 
 .auth-submit:active {
   transform: translateY(1px);
+}
+
+.qm-toast {
+  --normal-bg: #ffffff;
+  --normal-text: var(--qm-ink);
+  --normal-border: #f0caca;
 }
 
 .auth-back-link {

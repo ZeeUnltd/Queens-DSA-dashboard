@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, CalendarDays, Download, Search, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarDays, Download, Search } from 'lucide-react'
 import { accountsOpenedFixture } from '../../fixtures/dashboard'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'

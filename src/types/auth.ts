@@ -1,7 +1,6 @@
 export type LoginFormValues = {
   referralCode: string
   password: string
-  rememberMe: boolean
 }
 
 export type LoginFieldErrors = Partial<
@@ -30,3 +29,46 @@ export type CreatePasswordFormValues = {
 export type CreatePasswordFieldErrors = Partial<
   Record<keyof CreatePasswordFormValues, string>
 >
+
+export type AuthUserDetails = {
+  firstName: string
+  lastName: string
+  userName: string
+  isCompleteKyc: boolean
+  role?: string
+  roles?: string[]
+  staffRefCode?: number
+  isRM: boolean
+}
+
+export type AuthTokenBundle = {
+  accessToken: string
+  expiryDate: number
+  refreshToken: string
+  refreshExpiryDate: number
+}
+
+export type AuthData = {
+  passcodeSet?: boolean
+  token: AuthTokenBundle
+  userDetails: AuthUserDetails
+}
+
+export type ApiEnvelope<T> = {
+  responseCode: string
+  isSuccess: boolean
+  message: string
+  data: T
+}
+
+export type LoginRequest = {
+  PhoneNumber: string
+  Password: string
+}
+
+export type RefreshTokenRequest = {
+  refreshToken: string
+  username: string
+}
+
+export type AuthResponse = ApiEnvelope<AuthData>
