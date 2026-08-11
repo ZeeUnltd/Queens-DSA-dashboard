@@ -33,7 +33,7 @@ function LoginForm() {
     const nextErrors: LoginFieldErrors = {}
 
     if (!values.referralCode.trim()) {
-      nextErrors.referralCode = 'Enter your referral code.'
+      nextErrors.referralCode = 'Enter your phone number.'
     }
 
     if (!values.password) {

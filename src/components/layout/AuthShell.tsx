@@ -9,7 +9,7 @@ type AuthShellProps = PropsWithChildren
 
 function AuthShell({ children }: AuthShellProps) {
   return (
-    <main className="auth-shell grid min-h-screen md:grid-cols-2 p-4">
+    <main className="auth-shell grid min-h-screen grid-cols-1 p-4 lg:grid-cols-2">
       <section className="auth-visual relative hidden overflow-hidden lg:block" aria-label="QueensMoni brand">
         <img
           className="auth-visual__image absolute inset-0 h-full w-full rounded-[20px]"
@@ -34,7 +34,7 @@ function AuthShell({ children }: AuthShellProps) {
         </footer>
       </section>
 
-      <section className="auth-form-panel flex items-center justify-center px-6 py-14 sm:px-10 md:px-14 lg:px-20 xl:px-28">
+      <section className="auth-form-panel flex w-full items-center justify-center px-4 py-12 sm:px-8 md:px-12 lg:px-16 xl:px-24">
         {children}
       </section>
     </main>
