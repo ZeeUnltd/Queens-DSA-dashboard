@@ -34,7 +34,7 @@ function AuthShell({ children }: AuthShellProps) {
         </footer>
       </section>
 
-      <section className="auth-form-panel flex w-full items-center justify-center px-4 py-12 sm:px-8 md:px-12 lg:px-16 xl:px-24">
+      <section className="auth-form-panel flex w-full items-center justify-center px-4 py-12 sm:px-8 md:px-12 lg:px-16">
         {children}
       </section>
     </main>

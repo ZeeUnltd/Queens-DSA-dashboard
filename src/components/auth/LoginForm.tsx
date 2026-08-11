@@ -69,7 +69,7 @@ function LoginForm() {
       <header className="mb-12">
         <h1 className="text-[30px] font-semibold leading-[1.15] tracking-[-0.03em] text-qm-ink sm:text-[34px]">
           {LOGIN_COPY.title}
-          <span className="block">{LOGIN_COPY.subtitle}</span>
+          <span className="block font-light">{LOGIN_COPY.subtitle}</span>
         </h1>
         <p className="mt-4 text-base leading-6 text-qm-muted sm:text-lg">
           {LOGIN_COPY.description}
