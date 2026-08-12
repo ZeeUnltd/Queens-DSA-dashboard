@@ -5,7 +5,7 @@ import brandLogo from '../../assets/Brand-Logo.svg'
 import { DASHBOARD_COPY } from '../../constants/dashboard'
 import { Icons } from '../../constants/icons'
 import { useAuth } from '../../context/AuthContext'
-import { getDashboardNavigation } from '../../lib/dashboard-access'
+import { getDashboardNavigation, navigationIcons } from '../../lib/dashboard-access'
 import type { DashboardView } from '../../types/dashboard'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
@@ -20,15 +20,6 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { TooltipProvider } from '@/components/ui/tooltip'
-
-const navigationIcons = {
-  summary: Icons.category,
-  'accounts-opened': Icons.profile2User,
-  'balance-movements': Icons.bank,
-  'kpi-performance': Icons.statusUp,
-  'dsa-dashboard': Icons.category,
-  'all-dsas': Icons.profile2User,
-} as const
 
 type DashboardShellProps = PropsWithChildren<{
   activeView: DashboardView
