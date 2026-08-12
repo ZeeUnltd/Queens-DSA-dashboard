@@ -19,6 +19,7 @@ import { Route as PasswordResetSuccessRouteImport } from './routes/password-rese
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardAccountsOpenedRouteImport } from './routes/dashboard.accounts-opened'
+import { Route as DashboardAllDsasRouteImport } from './routes/dashboard.all-dsas'
 import { Route as DashboardBalanceMovementsRouteImport } from './routes/dashboard.balance-movements'
 import { Route as DashboardKpiPerformanceRouteImport } from './routes/dashboard.kpi-performance'
 
@@ -72,6 +73,11 @@ const DashboardAccountsOpenedRoute = DashboardAccountsOpenedRouteImport.update({
   path: '/accounts-opened',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardAllDsasRoute = DashboardAllDsasRouteImport.update({
+  id: '/all-dsas',
+  path: '/all-dsas',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardBalanceMovementsRoute =
   DashboardBalanceMovementsRouteImport.update({
     id: '/balance-movements',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/password-reset-success': typeof PasswordResetSuccessRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard/accounts-opened': typeof DashboardAccountsOpenedRoute
+  '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/password-reset-success': typeof PasswordResetSuccessRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard/accounts-opened': typeof DashboardAccountsOpenedRoute
+  '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/password-reset-success': typeof PasswordResetSuccessRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard/accounts-opened': typeof DashboardAccountsOpenedRoute
+  '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/password-reset-success'
     | '/reset-password'
     | '/dashboard/accounts-opened'
+    | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
     | '/dashboard/'
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/password-reset-success'
     | '/reset-password'
     | '/dashboard/accounts-opened'
+    | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
     | '/dashboard'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/password-reset-success'
     | '/reset-password'
     | '/dashboard/accounts-opened'
+    | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
     | '/dashboard/'
@@ -253,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAccountsOpenedRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/all-dsas': {
+      id: '/dashboard/all-dsas'
+      path: '/all-dsas'
+      fullPath: '/dashboard/all-dsas'
+      preLoaderRoute: typeof DashboardAllDsasRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/balance-movements': {
       id: '/dashboard/balance-movements'
       path: '/balance-movements'
@@ -272,6 +291,7 @@ declare module '@tanstack/react-router' {
 
 interface DashboardRouteChildren {
   DashboardAccountsOpenedRoute: typeof DashboardAccountsOpenedRoute
+  DashboardAllDsasRoute: typeof DashboardAllDsasRoute
   DashboardBalanceMovementsRoute: typeof DashboardBalanceMovementsRoute
   DashboardKpiPerformanceRoute: typeof DashboardKpiPerformanceRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -279,6 +299,7 @@ interface DashboardRouteChildren {
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAccountsOpenedRoute: DashboardAccountsOpenedRoute,
+  DashboardAllDsasRoute: DashboardAllDsasRoute,
   DashboardBalanceMovementsRoute: DashboardBalanceMovementsRoute,
   DashboardKpiPerformanceRoute: DashboardKpiPerformanceRoute,
   DashboardIndexRoute: DashboardIndexRoute,

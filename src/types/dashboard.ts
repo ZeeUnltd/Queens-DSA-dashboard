@@ -1,4 +1,4 @@
-export type DashboardView = 'summary' | 'accounts-opened' | 'balance-movements' | 'kpi-performance'
+export type DashboardView = 'summary' | 'accounts-opened' | 'balance-movements' | 'kpi-performance' | 'dsa-dashboard' | 'all-dsas'
 
 export type ProductKey = 'easySavings' | 'queensStash' | 'queensLock' | 'myKolo'
 
@@ -23,4 +23,22 @@ export type RelationshipManager = {
   location: string
   grade: string
   referralCode: string
+}
+
+export type DirectSalesAgent = {
+  id: string
+  initials: string
+  name: string
+  accountsOpened: number
+  inflow: number
+  outflow: number
+  balance: number
+  activeMandates: number
+}
+
+export type DsaSummaryMetrics = {
+  accountsOpened: number
+  inflow: number
+  outflow: number
+  balance: number
 }

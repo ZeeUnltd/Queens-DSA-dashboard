@@ -16,9 +16,9 @@ function AuthShell({ children }: AuthShellProps) {
           src={desktopImage}
           alt="QueensMoni relationship manager working at a desk"
         />
-        <div className="auth-visual__overlay absolute inset-0 rounded-[20px]" aria-hidden="true" />
+        <div className="auth-visual__overlay absolute inset-0 rounded-[20px]" aria-hidden="true"/>
         <footer className="auth-visual__footer absolute inset-x-0 bottom-0 flex items-center justify-between gap-6 px-8 pb-8 xl:px-12 xl:pb-10">
-          <img className="h-auto w-[170px] xl:w-[213px]" src={whiteBrandLogo} alt="QueensMonie" />
+          <img className="h-auto w-[170px] xl:w-[213px]" src={whiteBrandLogo} alt="QueensMonie"/>
 
           <div className="flex items-center gap-8 text-sm text-white xl:gap-12 xl:text-base">
             <div className="flex items-center gap-3" aria-label="Licensed by the Central Bank of Nigeria and insured by NDIC">

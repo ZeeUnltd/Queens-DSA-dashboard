@@ -1,4 +1,22 @@
-import type { ProductCategory, RelationshipManager } from '../types/dashboard'
+import type { DirectSalesAgent, DsaSummaryMetrics, ProductCategory, RelationshipManager } from '../types/dashboard'
+
+export const dsaSummaryMetricsFixture: DsaSummaryMetrics = {
+  accountsOpened: 528,
+  inflow: 72,
+  outflow: 97,
+  balance: 103219.06,
+}
+
+export const directSalesAgentsFixture: DirectSalesAgent[] = [
+  { id: 'murtala-salami', initials: 'MS', name: 'Murtala Salami', accountsOpened: 50, inflow: 32, outflow: 16, balance: 12000, activeMandates: 13 },
+  { id: 'amina-abubakar', initials: 'AA', name: 'Amina Abubakar', accountsOpened: 32, inflow: 16, outflow: 27, balance: 29500, activeMandates: 8 },
+  { id: 'bashir-kone', initials: 'BK', name: 'Bashir Kone', accountsOpened: 63, inflow: 54, outflow: 13, balance: 50000, activeMandates: 12 },
+  { id: 'chioma-leke', initials: 'CL', name: 'Chioma Leke', accountsOpened: 27, inflow: 27, outflow: 25, balance: 8500, activeMandates: 9 },
+  { id: 'david-juma', initials: 'DJ', name: 'David Juma', accountsOpened: 31, inflow: 29, outflow: 32, balance: 15750, activeMandates: 16 },
+  { id: 'esther-sule', initials: 'ES', name: 'Esther Sule', accountsOpened: 24, inflow: 16, outflow: 18, balance: 42300, activeMandates: 11 },
+  { id: 'farida-mohammed', initials: 'FM', name: 'Farida Mohammed', accountsOpened: 47, inflow: 25, outflow: 29, balance: 27900, activeMandates: 6 },
+  { id: 'gabriel-nwosu', initials: 'GN', name: 'Gabriel Nwosu', accountsOpened: 63, inflow: 18, outflow: 16, balance: 33100, activeMandates: 16 },
+]
 
 export const relationshipManagerFixture: RelationshipManager = {
   name: 'Adaeze Okonkwo',

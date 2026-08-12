@@ -7,6 +7,11 @@ export const DASHBOARD_NAVIGATION: Array<{ id: DashboardView; label: string; hre
   { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
 ]
 
+export const DSA_NAVIGATION: Array<{ id: DashboardView; label: string; href: string }> = [
+  { id: 'dsa-dashboard', label: 'Dashboard', href: '/dashboard' },
+  { id: 'all-dsas', label: 'All DSAs', href: '/dashboard/all-dsas' },
+]
+
 export const PRODUCT_LABELS: Record<ProductKey, string> = {
   easySavings: 'Easy Savings',
   queensStash: 'Queens Stash',
