@@ -1,14 +1,16 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowRight, Eye, TrendingDown, TrendingUp, Users } from 'lucide-react'
+import {Icons} from '../../constants/icons'
 import { dsaSummaryMetricsFixture, directSalesAgentsFixture } from '../../fixtures/dashboard'
 import { formatCurrency } from './dashboard-formatters'
+import backdropScenery from '../../assets/backdrop-scenery.png'
 
 function DsaDashboardView() {
   const metrics = dsaSummaryMetricsFixture
   const cards = [
-    { label: 'Total Account Opened', value: metrics.accountsOpened, icon: Users, featured: true },
-    { label: 'Total Inflow', value: metrics.inflow, icon: TrendingUp, featured: false },
-    { label: 'Total Outflow', value: metrics.outflow, icon: TrendingDown, featured: false },
+    { label: 'Total Account Opened', value: metrics.accountsOpened, icon: Icons.profile2User, featured: true },
+    { label: 'Total Inflow', value: metrics.inflow, icon: Icons.totalInflowIcon, featured: false },
+    { label: 'Total Outflow', value: metrics.outflow, icon: Icons.totalOutflowIcon, featured: false },
     { label: 'Total Balance', value: formatCurrency(metrics.balance), icon: Eye, featured: false },
   ]
 
@@ -20,8 +22,12 @@ function DsaDashboardView() {
       </header>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {cards.map(({ label, value, icon: Icon, featured }) => (
-          <article className={`min-h-[110px] rounded-2xl border p-5 ${featured ? 'border-qm-brand bg-qm-brand text-white' : 'border-[#eeeeee] bg-white text-qm-ink'}`} key={label}>
-            <div className={`flex items-center gap-2 text-xs ${featured ? 'text-white' : 'text-qm-muted'}`}><Icon className="h-4 w-4" /><span>{label}</span></div>
+          <article  style={label === 'Total Account Opened' ? { backgroundImage: `linear-gradient(rgba(182, 0, 0, 0.88), rgba(182, 0, 0, 0.88)), url(${backdropScenery})`, backgroundSize: '100px' } : {}} 
+
+          className={`min-h-37 rounded-2xl border p-5  ${featured ? 'border-qm-brand bg-qm-brand text-white' : 'border-[#eeeeee] bg-white text-qm-ink'} ${ label === 'Total Account Opened' ? 'col-row-span2' : ''}`} 
+          
+          key={label}>
+            <div className={`flex items-center gap-2 text-xs ${featured ? 'text-white' : 'text-qm-muted'}`}><Icon className="h-5 w-5" /><span>{label}</span></div>
             <strong className="mt-4 block text-2xl font-bold">{value}</strong>
           </article>
         ))}
