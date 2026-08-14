@@ -1,6 +1,6 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
 import type { ApiEnvelope, AuthData, AuthResponse, LoginRequest, RefreshTokenRequest } from '../types/auth'
-import type { DsaTopCard, GetTransactionsParams, TransactionsPage } from '../types/dashboard'
+import type { DsaTopCard, ExportTransactionsParams, GetTransactionsParams, TransactionsPage } from '../types/dashboard'
 import {
   clearAuthSession,
   getAccessToken,
@@ -106,6 +106,24 @@ export async function getTransactions({
   })
   if (!response.data.isSuccess) throw new Error(response.data.message || 'Unable to load transactions')
   return response.data.data
+}
+
+export async function exportTransactions({ downloadOptions, transactionStartDate, transactionEndDate, transactionAmount, accountNumber, pageNumber, pageSize }: ExportTransactionsParams) {
+  const response = await apiClient.get<Blob>(`/api/dashboard/exportReport/${encodeURIComponent(downloadOptions)}`, {
+    params: {
+      TransactionStartDate: transactionStartDate,
+      TransactionEndDate: transactionEndDate,
+      TransactionAmount: transactionAmount,
+      AccountNumber: accountNumber || undefined,
+      PageNumber: pageNumber,
+      PageSize: pageSize,
+    },
+    responseType: 'blob',
+  })
+  return {
+    blob: response.data,
+    contentDisposition: response.headers['content-disposition'],
+  }
 }
 
 export { apiClient, refreshAccessToken }

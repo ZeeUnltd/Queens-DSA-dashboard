@@ -97,3 +97,13 @@ export type GetTransactionsParams = {
   transactionStartDate: string
   transactionEndDate: string
 }
+
+export type ExportTransactionsParams = {
+  downloadOptions: string
+  transactionStartDate: string
+  transactionEndDate: string
+  transactionAmount?: number
+  accountNumber?: string
+  pageNumber: number
+  pageSize: number
+}

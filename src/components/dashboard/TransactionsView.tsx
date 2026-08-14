@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { getTransactions } from '../../lib/api-client'
+import { exportTransactions, getTransactions } from '../../lib/api-client'
 import type { TransactionRecord } from '../../types/dashboard'
 import { formatCurrency } from './dashboard-formatters'
 import TransactionDetailsSheet from './TransactionDetailsSheet'
+import TransactionExportDialog from './TransactionExportDialog'
 import TransactionPagination from './TransactionPagination'
 import { getTransactionInitials, getTransactionStatusClassName, getTransactionTypeClassName, getTransactionTypeLabel, TransactionDirectionIcon } from './transaction-display'
 
@@ -43,6 +44,9 @@ function TransactionsView() {
   const [accountNumber, setAccountNumber] = useState('')
   const [dateRange, setDateRange] = useState(getDefaultDateRange)
   const [selectedTransaction, setSelectedTransaction] = useState<TransactionRecord | null>(null)
+  const [isExportDialogOpen, setIsExportDialogOpen] = useState(false)
+  const [isExporting, setIsExporting] = useState(false)
+  const [exportError, setExportError] = useState<string | null>(null)
 
   useEffect(() => {
     const timeout = window.setTimeout(() => setAccountNumber(accountNumberInput.trim()), 400)
@@ -67,6 +71,34 @@ function TransactionsView() {
     setPage(1)
   }
 
+  async function handleExport(values: { startDate: string; endDate: string; accountNumber: string; amount: string; pageNumber: number; pageSize: number }) {
+    setIsExporting(true)
+    setExportError(null)
+    try {
+      const { blob, contentDisposition } = await exportTransactions({
+        downloadOptions: 'email',
+        transactionStartDate: `${values.startDate}T00:00:00`,
+        transactionEndDate: `${values.endDate}T23:59:59.999`,
+        transactionAmount: values.amount ? Number(values.amount) : undefined,
+        accountNumber: values.accountNumber || undefined,
+        pageNumber: values.pageNumber,
+        pageSize: values.pageSize,
+      })
+      const filename = contentDisposition?.match(/filename\*?=(?:UTF-8''|")?([^";]+)/i)?.[1] || 'transactions.csv'
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = decodeURIComponent(filename)
+      link.click()
+      URL.revokeObjectURL(url)
+      setIsExportDialogOpen(false)
+    } catch (error) {
+      setExportError(error instanceof Error ? error.message : 'Unable to export transactions')
+    } finally {
+      setIsExporting(false)
+    }
+  }
+
   return (
     <section aria-busy={isPending}>
       <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -83,7 +115,7 @@ function TransactionsView() {
               <label className="grid gap-1 text-xs font-medium text-qm-ink">End date<input className="h-9 rounded-md border border-[#dedede] px-2 text-sm" type="date" value={dateRange.end} min={dateRange.start} onChange={(event) => updateDateRange('end', event.target.value)} /></label>
             </div>
           </details>
-          <Button className="h-10 rounded-full bg-qm-brand px-5 text-xs hover:bg-qm-brand-hover" type="button"><Download />Export CSV</Button>
+          <Button className="h-10 rounded-full bg-qm-brand px-5 text-xs hover:bg-qm-brand-hover" type="button" onClick={() => { setExportError(null); setIsExportDialogOpen(true) }}><Download />Export CSV</Button>
         </div>
       </div>
 
@@ -135,6 +167,7 @@ function TransactionsView() {
         /> : null}
       </div>
       <TransactionDetailsSheet transaction={selectedTransaction} onClose={() => setSelectedTransaction(null)} />
+      {isExportDialogOpen ? <TransactionExportDialog startDate={dateRange.start} endDate={dateRange.end} accountNumber={accountNumber} pageNumber={page} pageSize={pageSize} isExporting={isExporting} error={exportError} onClose={() => setIsExportDialogOpen(false)} onExport={handleExport} /> : null}
     </section>
   )
 }
