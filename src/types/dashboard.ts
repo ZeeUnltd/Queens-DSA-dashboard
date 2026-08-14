@@ -42,3 +42,8 @@ export type DsaSummaryMetrics = {
   outflow: number
   balance: number
 }
+
+export type DsaTopCard = {
+  title: string
+  value: number
+}

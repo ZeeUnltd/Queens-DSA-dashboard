@@ -3,7 +3,7 @@ import type { DashboardView } from '../types/dashboard'
 
 export const DASHBOARD_NAVIGATION: Array<{ id: DashboardView; label: string; href: string }> = [
   { id: 'summary', label: 'Summary', href: '/dashboard' },
-  { id: 'accounts-opened', label: 'Accounts Opened', href: '/dashboard/accounts-opened' },
+  { id: 'accounts-opened', label: 'Transactions', href: '/dashboard/accounts-opened' },
   { id: 'balance-movements', label: 'Balance Movements', href: '/dashboard/balance-movements' },
   { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
 ]
@@ -13,10 +13,10 @@ export const DSA_NAVIGATION: Array<{ id: DashboardView; label: string; href: str
   { id: 'all-dsas', label: 'All DSAs', href: '/dashboard/all-dsas' },
 
 // NOTE: TEST- uncomment the block below to test the DSA dashboard view without access control
-  { id: 'summary', label: 'Summary', href: '/dashboard' },
-  { id: 'accounts-opened', label: 'Accounts Opened', href: '/dashboard/accounts-opened' },
-  { id: 'balance-movements', label: 'Balance Movements', href: '/dashboard/balance-movements' },
-  { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
+  // { id: 'summary', label: 'Summary', href: '/dashboard' },
+  // { id: 'accounts-opened', label: 'Transactions', href: '/dashboard/accounts-opened' },
+  // { id: 'balance-movements', label: 'Balance Movements', href: '/dashboard/balance-movements' },
+  // { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
 ]
 
 export const navigationIcons = {
@@ -33,7 +33,7 @@ export function getDashboardNavigation(isRM: boolean) {
 }
 
 export function getLandingDashboardView(isRM: boolean): DashboardView {
-  return isRM ? 'summary' : 'dsa-dashboard'
+  return !isRM ? 'summary' : 'dsa-dashboard'
 }
 
 export function canAccessDashboardView(view: DashboardView, isRM: boolean) {

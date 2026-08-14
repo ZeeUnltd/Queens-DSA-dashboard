@@ -1,5 +1,6 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
-import type { AuthData, AuthResponse, LoginRequest, RefreshTokenRequest } from '../types/auth'
+import type { ApiEnvelope, AuthData, AuthResponse, LoginRequest, RefreshTokenRequest } from '../types/auth'
+import type { DsaTopCard } from '../types/dashboard'
 import {
   clearAuthSession,
   getAccessToken,
@@ -77,6 +78,14 @@ export async function login(request: LoginRequest) {
   const response = await apiClient.post<AuthResponse>('/api/dashboard/Dashboard Login', request)
   if (!response.data.isSuccess) throw new Error(response.data.message)
   return normalizeAuthData(response.data.data)
+}
+
+export async function getDsaActivitiesCards(referralId: number) {
+  const response = await apiClient.get<ApiEnvelope<DsaTopCard[]>>('/api/dashboard/GetDSAActivitiesCards', {
+    params: { ReferralId: referralId },
+  })
+  if (!response.data.isSuccess) throw new Error(response.data.message || 'Unable to load dashboard summary')
+  return response.data.data
 }
 
 export { apiClient, refreshAccessToken }
