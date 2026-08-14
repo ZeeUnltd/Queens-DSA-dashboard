@@ -53,17 +53,6 @@ export const productCategoriesFixture: ProductCategory[] = [
 
 export const totalValuesFixture = { easySavings: 3852000, queensStash: 2000000, queensLock: 2703000, myKolo: 497050 }
 
-export const accountsOpenedFixture = [
-  { initials: 'AA', name: 'Amina Abubakar', type: 'Personal', products: 'Easy Savings', balance: 452000, movement: 72000, direction: 'up' },
-  { initials: 'BK', name: 'Bashir Kone', type: 'Personal', products: 'Queens Stash', balance: 1250000, movement: 120050, direction: 'down' },
-  { initials: 'CL', name: 'Chioma Leke', type: 'Business', products: 'Queens Lock', balance: 800000, movement: 0, direction: undefined },
-  { initials: 'DJ', name: 'David Juma', type: 'Business', products: 'Easy Savings, My Kolo', balance: 3490000, movement: 85000, direction: 'up' },
-  { initials: 'ES', name: 'Esther Sule', type: 'Business', products: 'Queens Stash', balance: 750000, movement: 50000, direction: 'up' },
-  { initials: 'FM', name: 'Farida Mohammed', type: 'Personal', products: 'Easy Savings', balance: 1903000, movement: 0, direction: undefined },
-  { initials: 'GN', name: 'Gabriel Nwosu', type: 'Business', products: 'Queens Lock', balance: 290000, movement: 30000, direction: 'down' },
-  { initials: 'TB', name: 'Tunde Bakare', type: 'Personal', products: 'My Kolo', balance: 127000, movement: 57000, direction: 'up' },
-] as const
-
 export const balanceMovementsFixture = [
   { name: 'Fatima Aliyu', product: 'Easy Savings', balance: 452000, movement: 72000, direction: 'up' },
   { name: 'Taslim Balogun', product: 'Queens Stash', balance: 800000, movement: 120000, direction: 'down' },

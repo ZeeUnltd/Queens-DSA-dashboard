@@ -3,7 +3,7 @@ import type { DashboardView } from '../types/dashboard'
 
 export const DASHBOARD_NAVIGATION: Array<{ id: DashboardView; label: string; href: string }> = [
   { id: 'summary', label: 'Summary', href: '/dashboard' },
-  { id: 'accounts-opened', label: 'Transactions', href: '/dashboard/accounts-opened' },
+  { id: 'transactions', label: 'Transactions', href: '/dashboard/transactions' },
   { id: 'balance-movements', label: 'Balance Movements', href: '/dashboard/balance-movements' },
   { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
 ]
@@ -14,14 +14,14 @@ export const DSA_NAVIGATION: Array<{ id: DashboardView; label: string; href: str
 
 // NOTE: TEST- uncomment the block below to test the DSA dashboard view without access control
   // { id: 'summary', label: 'Summary', href: '/dashboard' },
-  // { id: 'accounts-opened', label: 'Transactions', href: '/dashboard/accounts-opened' },
+  // { id: 'transactions', label: 'Transactions', href: '/dashboard/transactions' },
   // { id: 'balance-movements', label: 'Balance Movements', href: '/dashboard/balance-movements' },
   // { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
 ]
 
 export const navigationIcons = {
   summary: Icons.category,
-  'accounts-opened': Icons.profile2User,
+  transactions: Icons.profile2User,
   'balance-movements': Icons.bank,
   'kpi-performance': Icons.statusUp,
   'dsa-dashboard': Icons.category,
@@ -38,7 +38,6 @@ export function getLandingDashboardView(isRM: boolean): DashboardView {
 
 export function canAccessDashboardView(view: DashboardView, isRM: boolean) {
   if (view === 'dsa-dashboard' || view === 'all-dsas') return !isRM
-  if (view === 'accounts-opened' || view === 'balance-movements' || view === 'kpi-performance') return isRM
+  if (view === 'transactions' || view === 'balance-movements' || view === 'kpi-performance') return isRM
   return true
 }
-

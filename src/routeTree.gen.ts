@@ -18,10 +18,10 @@ import { Route as OtpRouteImport } from './routes/otp'
 import { Route as PasswordResetSuccessRouteImport } from './routes/password-reset-success'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
-import { Route as DashboardAccountsOpenedRouteImport } from './routes/dashboard.accounts-opened'
 import { Route as DashboardAllDsasRouteImport } from './routes/dashboard.all-dsas'
 import { Route as DashboardBalanceMovementsRouteImport } from './routes/dashboard.balance-movements'
 import { Route as DashboardKpiPerformanceRouteImport } from './routes/dashboard.kpi-performance'
+import { Route as DashboardTransactionsRouteImport } from './routes/dashboard.transactions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -68,11 +68,6 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardAccountsOpenedRoute = DashboardAccountsOpenedRouteImport.update({
-  id: '/accounts-opened',
-  path: '/accounts-opened',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const DashboardAllDsasRoute = DashboardAllDsasRouteImport.update({
   id: '/all-dsas',
   path: '/all-dsas',
@@ -89,6 +84,11 @@ const DashboardKpiPerformanceRoute = DashboardKpiPerformanceRouteImport.update({
   path: '/kpi-performance',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardTransactionsRoute = DashboardTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -99,10 +99,10 @@ export interface FileRoutesByFullPath {
   '/otp': typeof OtpRoute
   '/password-reset-success': typeof PasswordResetSuccessRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/dashboard/accounts-opened': typeof DashboardAccountsOpenedRoute
   '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
+  '/dashboard/transactions': typeof DashboardTransactionsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -113,10 +113,10 @@ export interface FileRoutesByTo {
   '/otp': typeof OtpRoute
   '/password-reset-success': typeof PasswordResetSuccessRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/dashboard/accounts-opened': typeof DashboardAccountsOpenedRoute
   '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
+  '/dashboard/transactions': typeof DashboardTransactionsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -129,10 +129,10 @@ export interface FileRoutesById {
   '/otp': typeof OtpRoute
   '/password-reset-success': typeof PasswordResetSuccessRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/dashboard/accounts-opened': typeof DashboardAccountsOpenedRoute
   '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
+  '/dashboard/transactions': typeof DashboardTransactionsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -146,10 +146,10 @@ export interface FileRouteTypes {
     | '/otp'
     | '/password-reset-success'
     | '/reset-password'
-    | '/dashboard/accounts-opened'
     | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
+    | '/dashboard/transactions'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -160,10 +160,10 @@ export interface FileRouteTypes {
     | '/otp'
     | '/password-reset-success'
     | '/reset-password'
-    | '/dashboard/accounts-opened'
     | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
+    | '/dashboard/transactions'
     | '/dashboard'
   id:
     | '__root__'
@@ -175,10 +175,10 @@ export interface FileRouteTypes {
     | '/otp'
     | '/password-reset-success'
     | '/reset-password'
-    | '/dashboard/accounts-opened'
     | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
+    | '/dashboard/transactions'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -258,13 +258,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/accounts-opened': {
-      id: '/dashboard/accounts-opened'
-      path: '/accounts-opened'
-      fullPath: '/dashboard/accounts-opened'
-      preLoaderRoute: typeof DashboardAccountsOpenedRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/dashboard/all-dsas': {
       id: '/dashboard/all-dsas'
       path: '/all-dsas'
@@ -286,22 +279,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardKpiPerformanceRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/transactions': {
+      id: '/dashboard/transactions'
+      path: '/transactions'
+      fullPath: '/dashboard/transactions'
+      preLoaderRoute: typeof DashboardTransactionsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
 interface DashboardRouteChildren {
-  DashboardAccountsOpenedRoute: typeof DashboardAccountsOpenedRoute
   DashboardAllDsasRoute: typeof DashboardAllDsasRoute
   DashboardBalanceMovementsRoute: typeof DashboardBalanceMovementsRoute
   DashboardKpiPerformanceRoute: typeof DashboardKpiPerformanceRoute
+  DashboardTransactionsRoute: typeof DashboardTransactionsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardAccountsOpenedRoute: DashboardAccountsOpenedRoute,
   DashboardAllDsasRoute: DashboardAllDsasRoute,
   DashboardBalanceMovementsRoute: DashboardBalanceMovementsRoute,
   DashboardKpiPerformanceRoute: DashboardKpiPerformanceRoute,
+  DashboardTransactionsRoute: DashboardTransactionsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
