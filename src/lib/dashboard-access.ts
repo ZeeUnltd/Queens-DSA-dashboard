@@ -3,6 +3,7 @@ import type { DashboardView } from '../types/dashboard'
 
 export const DASHBOARD_NAVIGATION: Array<{ id: DashboardView; label: string; href: string }> = [
   { id: 'summary', label: 'Summary', href: '/dashboard' },
+  { id: 'dsa-dashboard', label: 'Dashboard', href: '/dashboard/rm-dashboard' },
   { id: 'transactions', label: 'Transactions', href: '/dashboard/transactions' },
   { id: 'balance-movements', label: 'Balance Movements', href: '/dashboard/balance-movements' },
   { id: 'kpi-performance', label: 'KPI & Performance', href: '/dashboard/kpi-performance' },
@@ -33,11 +34,12 @@ export function getDashboardNavigation(isRM: boolean) {
 }
 
 export function getLandingDashboardView(isRM: boolean): DashboardView {
-  return !isRM ? 'summary' : 'dsa-dashboard'
+  return isRM ? 'summary' : 'dsa-dashboard'
 }
 
 export function canAccessDashboardView(view: DashboardView, isRM: boolean) {
-  if (view === 'dsa-dashboard' || view === 'all-dsas') return !isRM
+  if (view === 'dsa-dashboard') return true
+  if (view === 'all-dsas') return !isRM
   if (view === 'transactions' || view === 'balance-movements' || view === 'kpi-performance') return isRM
   return true
 }

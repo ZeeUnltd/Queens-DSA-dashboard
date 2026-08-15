@@ -1,7 +1,5 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import AllDsasPage from '../app/dashboard/all-dsas/page'
-import { canAccessDashboardView } from '../lib/dashboard-access'
-import { getStoredSession } from '../lib/auth-session'
 
 // export const Route = createFileRoute('/dashboard/all-dsas')({
 //   beforeLoad: () => {

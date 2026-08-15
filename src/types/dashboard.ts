@@ -48,6 +48,12 @@ export type DsaTopCard = {
   value: number
 }
 
+export type RmDsaSummaryRow = {
+  referralId: number
+  staffName: string
+  count: number
+}
+
 export type TransactionRecord = {
   id: number
   transactionType: string

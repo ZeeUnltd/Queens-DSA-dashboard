@@ -1,7 +1,5 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import BalanceMovementsPage from '../app/dashboard/balance-movements/page'
-import { canAccessDashboardView } from '../lib/dashboard-access'
-import { getStoredSession } from '../lib/auth-session'
 
 // export const Route = createFileRoute('/dashboard/balance-movements')({
 // 	beforeLoad: () => {

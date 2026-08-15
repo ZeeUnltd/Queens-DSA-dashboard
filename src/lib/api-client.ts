@@ -1,6 +1,6 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
 import type { ApiEnvelope, AuthData, AuthResponse, LoginRequest, RefreshTokenRequest } from '../types/auth'
-import type { DsaTopCard, ExportTransactionsParams, GetTransactionsParams, TransactionsPage } from '../types/dashboard'
+import type { DsaTopCard, ExportTransactionsParams, GetTransactionsParams, RmDsaSummaryRow, TransactionsPage } from '../types/dashboard'
 import {
   clearAuthSession,
   getAccessToken,
@@ -85,6 +85,18 @@ export async function getDsaActivitiesCards(referralId: number) {
     params: { ReferralId: referralId },
   })
   if (!response.data.isSuccess) throw new Error(response.data.message || 'Unable to load dashboard summary')
+  return response.data.data
+}
+
+export async function getRmTopCards() {
+  const response = await apiClient.get<ApiEnvelope<DsaTopCard[]>>('/api/dashboard/top-cards')
+  if (!response.data.isSuccess) throw new Error(response.data.message || 'Unable to load dashboard summary')
+  return response.data.data
+}
+
+export async function getRmDsaSummary() {
+  const response = await apiClient.get<ApiEnvelope<RmDsaSummaryRow[]>>('/api/dashboard/GetAccountsByDSAorByDate')
+  if (!response.data.isSuccess) throw new Error(response.data.message || 'Unable to load DSA summary')
   return response.data.data
 }
 
