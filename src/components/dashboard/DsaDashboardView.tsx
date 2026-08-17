@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
-import { ArrowRight, Eye, EyeOff, Users } from 'lucide-react'
+import { ArrowRight, Eye, EyeOff } from 'lucide-react'
 import {Icons} from '../../constants/icons'
 import { useAuth } from '../../context/AuthContext'
 import { directSalesAgentsFixture } from '../../fixtures/dashboard'

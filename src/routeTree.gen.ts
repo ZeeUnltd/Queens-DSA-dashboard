@@ -21,6 +21,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardAllDsasRouteImport } from './routes/dashboard.all-dsas'
 import { Route as DashboardBalanceMovementsRouteImport } from './routes/dashboard.balance-movements'
 import { Route as DashboardKpiPerformanceRouteImport } from './routes/dashboard.kpi-performance'
+import { Route as DashboardRmDashboardRouteImport } from './routes/dashboard.rm-dashboard'
 import { Route as DashboardTransactionsRouteImport } from './routes/dashboard.transactions'
 
 const IndexRoute = IndexRouteImport.update({
@@ -84,6 +85,11 @@ const DashboardKpiPerformanceRoute = DashboardKpiPerformanceRouteImport.update({
   path: '/kpi-performance',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardRmDashboardRoute = DashboardRmDashboardRouteImport.update({
+  id: '/rm-dashboard',
+  path: '/rm-dashboard',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardTransactionsRoute = DashboardTransactionsRouteImport.update({
   id: '/transactions',
   path: '/transactions',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
+  '/dashboard/rm-dashboard': typeof DashboardRmDashboardRoute
   '/dashboard/transactions': typeof DashboardTransactionsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
+  '/dashboard/rm-dashboard': typeof DashboardRmDashboardRoute
   '/dashboard/transactions': typeof DashboardTransactionsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/dashboard/all-dsas': typeof DashboardAllDsasRoute
   '/dashboard/balance-movements': typeof DashboardBalanceMovementsRoute
   '/dashboard/kpi-performance': typeof DashboardKpiPerformanceRoute
+  '/dashboard/rm-dashboard': typeof DashboardRmDashboardRoute
   '/dashboard/transactions': typeof DashboardTransactionsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
     | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
+    | '/dashboard/rm-dashboard'
     | '/dashboard/transactions'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
+    | '/dashboard/rm-dashboard'
     | '/dashboard/transactions'
     | '/dashboard'
   id:
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/dashboard/all-dsas'
     | '/dashboard/balance-movements'
     | '/dashboard/kpi-performance'
+    | '/dashboard/rm-dashboard'
     | '/dashboard/transactions'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -279,6 +291,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardKpiPerformanceRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/rm-dashboard': {
+      id: '/dashboard/rm-dashboard'
+      path: '/rm-dashboard'
+      fullPath: '/dashboard/rm-dashboard'
+      preLoaderRoute: typeof DashboardRmDashboardRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/transactions': {
       id: '/dashboard/transactions'
       path: '/transactions'
@@ -293,6 +312,7 @@ interface DashboardRouteChildren {
   DashboardAllDsasRoute: typeof DashboardAllDsasRoute
   DashboardBalanceMovementsRoute: typeof DashboardBalanceMovementsRoute
   DashboardKpiPerformanceRoute: typeof DashboardKpiPerformanceRoute
+  DashboardRmDashboardRoute: typeof DashboardRmDashboardRoute
   DashboardTransactionsRoute: typeof DashboardTransactionsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
@@ -301,6 +321,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAllDsasRoute: DashboardAllDsasRoute,
   DashboardBalanceMovementsRoute: DashboardBalanceMovementsRoute,
   DashboardKpiPerformanceRoute: DashboardKpiPerformanceRoute,
+  DashboardRmDashboardRoute: DashboardRmDashboardRoute,
   DashboardTransactionsRoute: DashboardTransactionsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
