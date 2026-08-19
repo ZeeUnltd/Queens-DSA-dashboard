@@ -1,4 +1,4 @@
-import BalanceMovementsView from '../../../components/dashboard/BalanceMovementsView'
+import BalanceMovementsView from './components/BalanceMovementsView'
 import DashboardShell from '../../../components/layout/DashboardShell'
 
 function BalanceMovementsPage() {

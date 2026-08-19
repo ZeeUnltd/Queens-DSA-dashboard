@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
-import type { DirectSalesAgent } from '../../types/dashboard'
-import { formatCurrency } from './dashboard-formatters'
+import type { DirectSalesAgent } from '../../../../types/dashboard'
+import { formatCurrency } from '../../components/dashboard-formatters'
 
 type DsaDetailsDialogProps = {
   agent: DirectSalesAgent | null

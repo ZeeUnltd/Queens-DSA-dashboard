@@ -1,5 +1,5 @@
 import { ArrowDownRight, ArrowUpRight, RotateCcw } from 'lucide-react'
-import type { TransactionRecord } from '../../types/dashboard'
+import type { TransactionRecord } from '../../../../types/dashboard'
 
 export type TransactionKind = 'deposit' | 'withdrawal' | 'reversal'
 

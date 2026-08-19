@@ -1,4 +1,4 @@
-import KpiPerformanceView from '../../../components/dashboard/KpiPerformanceView'
+import KpiPerformanceView from './components/KpiPerformanceView'
 import DashboardShell from '../../../components/layout/DashboardShell'
 
 function KpiPerformancePage() {

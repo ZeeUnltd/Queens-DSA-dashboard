@@ -2,13 +2,12 @@ import { Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { ArrowRight, Eye, EyeOff } from 'lucide-react'
-import {Icons} from '../../constants/icons'
-import { useAuth } from '../../context/AuthContext'
-import { directSalesAgentsFixture } from '../../fixtures/dashboard'
-import { getDsaActivitiesCards } from '../../lib/api-client'
-import type { DsaTopCard } from '../../types/dashboard'
+import {Icons} from '../../../constants/icons'
+import { useAuth } from '../../../context/AuthContext'
+import { getDsaActivitiesCards } from '../../../lib/api-client'
+import type { DsaTopCard } from '../../../types/dashboard'
 import { formatCurrency } from './dashboard-formatters'
-import backdropScenery from '../../assets/backdrop-scenery.png'
+import backdropScenery from '../../../assets/backdrop-scenery.png'
 
 function DsaDashboardView() {
   const { session } = useAuth()
@@ -63,7 +62,7 @@ function DsaDashboardView() {
       </div> : null}
       <section>
         <div className="mb-4 flex items-center justify-between gap-4"><h2 className="text-lg font-bold text-qm-ink">Direct Sales Agents</h2><Link className="text-xs font-semibold text-qm-brand hover:underline" to="/dashboard/all-dsas">View all <ArrowRight className="inline h-3 w-3" /></Link></div>
-        <div className="overflow-x-auto rounded-xl border border-[#eeeeee]"><table className="w-full min-w-190 text-xs"><thead><tr className="border-b border-[#f1f1f1] text-left text-[10px] text-qm-muted"><th className="px-4 py-3">DSA Full Name</th><th>Account Opened</th><th>Inflow</th><th>Outflow</th><th>Amount</th><th>Active Mandates</th></tr></thead><tbody>{directSalesAgentsFixture.slice(0, 7).map((agent) => <tr className="border-b border-[#f1f1f1] last:border-0" key={agent.id}><td className="px-4 py-3"><span className="flex items-center gap-3"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#fff6f6] text-[10px] font-bold text-qm-brand">{agent.initials}</span><strong>{agent.name}</strong></span></td><td>{agent.accountsOpened}</td><td>{agent.inflow}</td><td>{agent.outflow}</td><td>{formatCurrency(agent.balance)}</td><td>{agent.activeMandates}</td></tr>)}</tbody></table></div>
+        {/* <div className="overflow-hidden rounded-xl border border-[#eeeeee]"><Table className="min-w-190 text-xs"><TableHeader><TableRow className="border-[#f1f1f1] hover:bg-transparent"><TableHead className="px-4 py-3 text-[10px] text-qm-muted">DSA Full Name</TableHead><TableHead className="text-[10px] text-qm-muted">Account Opened</TableHead><TableHead className="text-[10px] text-qm-muted">Inflow</TableHead><TableHead className="text-[10px] text-qm-muted">Outflow</TableHead><TableHead className="text-[10px] text-qm-muted">Amount</TableHead><TableHead className="text-[10px] text-qm-muted">Active Mandates</TableHead></TableRow></TableHeader><TableBody>{directSalesAgentsFixture.slice(0, 7).map((agent) => <TableRow className="border-[#f1f1f1] hover:bg-[#fcfcfc]" key={agent.id}><TableCell className="px-4 py-3"><span className="flex items-center gap-3"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#fff6f6] text-[10px] font-bold text-qm-brand">{agent.initials}</span><strong>{agent.name}</strong></span></TableCell><TableCell>{agent.accountsOpened}</TableCell><TableCell>{agent.inflow}</TableCell><TableCell>{agent.outflow}</TableCell><TableCell>{formatCurrency(agent.balance)}</TableCell><TableCell>{agent.activeMandates}</TableCell></TableRow>)}</TableBody></Table></div> */}
       </section>
     </section>
   )

@@ -11,7 +11,7 @@ export const DASHBOARD_NAVIGATION: Array<{ id: DashboardView; label: string; hre
 
 export const DSA_NAVIGATION: Array<{ id: DashboardView; label: string; href: string }> = [
   { id: 'dsa-dashboard', label: 'Dashboard', href: '/dashboard' },
-  { id: 'all-dsas', label: 'All DSAs', href: '/dashboard/all-dsas' },
+  // { id: 'all-dsas', label: 'All DSAs', href: '/dashboard/all-dsas' },
 
 // NOTE: TEST- uncomment the block below to test the DSA dashboard view without access control
   // { id: 'summary', label: 'Summary', href: '/dashboard' },

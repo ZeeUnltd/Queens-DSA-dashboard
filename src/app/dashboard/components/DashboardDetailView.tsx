@@ -1,7 +1,7 @@
-import type { DashboardView } from '../../types/dashboard'
-import TransactionsView from './TransactionsView'
-import BalanceMovementsView from './BalanceMovementsView'
-import KpiPerformanceView from './KpiPerformanceView'
+import type { DashboardView } from '../../../types/dashboard'
+import TransactionsView from '../transactions/components/TransactionsView'
+import BalanceMovementsView from '../balance-movements/components/BalanceMovementsView'
+import KpiPerformanceView from '../kpi-performance/components/KpiPerformanceView'
 
 type DashboardDetailViewProps = { view: Exclude<DashboardView, 'summary'> }
 

@@ -1,4 +1,4 @@
-import TransactionsView from '../../../components/dashboard/TransactionsView'
+import TransactionsView from './components/TransactionsView'
 import DashboardShell from '../../../components/layout/DashboardShell'
 
 function TransactionsPage() {

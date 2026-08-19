@@ -1,12 +1,13 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { CalendarDays, Check, Copy, Download, Search } from 'lucide-react'
+import { toast } from 'sonner'
 import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { exportTransactions, getTransactions } from '../../lib/api-client'
-import type { TransactionRecord } from '../../types/dashboard'
-import { formatCurrency } from './dashboard-formatters'
+import { exportTransactions, getTransactions } from '../../../../lib/api-client'
+import type { TransactionRecord } from '../../../../types/dashboard'
+import { formatCurrency } from '../../components/dashboard-formatters'
 import TransactionDetailsSheet from './TransactionDetailsSheet'
 import TransactionExportDialog from './TransactionExportDialog'
 import TransactionPagination from './TransactionPagination'
@@ -106,7 +107,9 @@ function TransactionsView() {
       URL.revokeObjectURL(url)
       setIsExportDialogOpen(false)
     } catch (error) {
-      setExportError(error instanceof Error ? error.message : 'Unable to export transactions')
+      const message = error instanceof Error ? error.message : 'Unable to export transactions'
+      setExportError(message)
+      toast.error(message)
     } finally {
       setIsExporting(false)
     }

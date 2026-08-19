@@ -1,8 +1,8 @@
 import { Badge } from '@/components/ui/badge'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import type { ReactNode } from 'react'
-import type { TransactionRecord } from '../../types/dashboard'
-import { formatCurrency } from './dashboard-formatters'
+import type { TransactionRecord } from '../../../../types/dashboard'
+import { formatCurrency } from '../../components/dashboard-formatters'
 import { getTransactionStatusClassName, getTransactionTypeClassName, getTransactionTypeLabel } from './transaction-display'
 
 type TransactionDetailsSheetProps = {

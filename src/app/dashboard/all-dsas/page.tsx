@@ -1,4 +1,4 @@
-import DsaDirectoryView from '../../../components/dashboard/DsaDirectoryView'
+import DsaDirectoryView from './components/DsaDirectoryView'
 import DashboardShell from '../../../components/layout/DashboardShell'
 
 function AllDsasPage() {
