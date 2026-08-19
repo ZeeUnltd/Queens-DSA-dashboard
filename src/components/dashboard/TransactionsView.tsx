@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
-import { CalendarDays, Download, Search } from 'lucide-react'
+import { CalendarDays, Check, Copy, Download, Search } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -47,6 +47,7 @@ function TransactionsView() {
   const [isExportDialogOpen, setIsExportDialogOpen] = useState(false)
   const [isExporting, setIsExporting] = useState(false)
   const [exportError, setExportError] = useState<string | null>(null)
+  const [copiedTransactionId, setCopiedTransactionId] = useState<number | null>(null)
 
   useEffect(() => {
     const timeout = window.setTimeout(() => setAccountNumber(accountNumberInput.trim()), 400)
@@ -69,6 +70,18 @@ function TransactionsView() {
   function updateDateRange(key: 'start' | 'end', value: string) {
     setDateRange((current) => ({ ...current, [key]: value }))
     setPage(1)
+  }
+
+  async function handleCopyTransactionReference(transaction: TransactionRecord) {
+    if (!transaction.transactionRef) return
+
+    try {
+      await navigator.clipboard.writeText(transaction.transactionRef)
+      setCopiedTransactionId(transaction.id)
+      window.setTimeout(() => setCopiedTransactionId(null), 1600)
+    } catch {
+      return
+    }
   }
 
   async function handleExport(values: { startDate: string; endDate: string; accountNumber: string; amount: string; pageNumber: number; pageSize: number }) {
@@ -146,7 +159,24 @@ function TransactionsView() {
                 <TableCell className="text-right text-sm">{formatCurrency(transaction.charges)}</TableCell>
                 <TableCell><Badge className={getTransactionStatusClassName(transaction)}>{transaction.transactionStatus || transaction.status || 'Unknown'}</Badge></TableCell>
                 <TableCell className="text-sm">{transaction.productType || '—'}</TableCell>
-                <TableCell className="font-mono text-xs">{transaction.transactionRef || '—'}</TableCell>
+                <TableCell className="max-w-[220px]">
+                  {transaction.transactionRef ? (
+                    <span className="group/reference flex min-w-0 items-center gap-1.5">
+                      <span className="min-w-0 truncate font-mono text-xs" title={transaction.transactionRef}>{transaction.transactionRef}</span>
+                      <Button
+                        aria-label={`Copy transaction reference ${transaction.transactionRef}`}
+                        className="pointer-events-none opacity-0 transition-opacity group-hover/reference:pointer-events-auto group-hover/reference:opacity-100 focus-visible:pointer-events-auto focus-visible:opacity-100"
+                        size="icon-xs"
+                        title={copiedTransactionId === transaction.id ? 'Copied' : 'Copy transaction reference'}
+                        type="button"
+                        variant="ghost"
+                        onClick={() => { void handleCopyTransactionReference(transaction) }}
+                      >
+                        {copiedTransactionId === transaction.id ? <Check /> : <Copy />}
+                      </Button>
+                    </span>
+                  ) : '—'}
+                </TableCell>
                 <TableCell className="text-sm"><span className="flex items-center gap-1.5 whitespace-nowrap">{formatTransactionDate(transaction.transactionDate)}<TransactionDirectionIcon transaction={transaction} /></span></TableCell>
                 <TableCell className="px-5 text-right"><button className="font-semibold text-qm-brand hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-qm-brand/30" type="button" onClick={() => setSelectedTransaction(transaction)} aria-label={`View transaction details for ${transaction.beneficiaryName || transaction.id}`}>View details</button></TableCell>
               </TableRow>
