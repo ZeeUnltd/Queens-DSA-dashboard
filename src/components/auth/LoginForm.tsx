@@ -156,6 +156,9 @@ function LoginForm() {
       <p className="sr-only" aria-live="polite">
         {submitted ? 'Login details are ready to submit.' : ''}
       </p>
+      <span className="text-sm text-gray-500">
+        v-1.0.0
+      </span>
     </form>
   )
 }
