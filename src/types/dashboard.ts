@@ -115,7 +115,7 @@ export type GetTransactionsParams = {
 }
 
 export type ExportTransactionsParams = {
-  downloadOptions: string
+  downloadOptions: 'csv' | 'pdf'
   transactionStartDate: string
   transactionEndDate: string
   transactionAmount?: number

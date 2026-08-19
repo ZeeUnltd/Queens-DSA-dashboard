@@ -85,12 +85,12 @@ function TransactionsView() {
     }
   }
 
-  async function handleExport(values: { startDate: string; endDate: string; accountNumber: string; amount: string; pageNumber: number; pageSize: number }) {
+  async function handleExport(values: { startDate: string; endDate: string; accountNumber: string; amount: string; downloadOptions: 'csv' | 'pdf'; pageNumber: number; pageSize: number }) {
     setIsExporting(true)
     setExportError(null)
     try {
       const { blob, contentDisposition } = await exportTransactions({
-        downloadOptions: 'email',
+        downloadOptions: values.downloadOptions,
         transactionStartDate: `${values.startDate}T00:00:00`,
         transactionEndDate: `${values.endDate}T23:59:59.999`,
         transactionAmount: values.amount ? Number(values.amount) : undefined,
@@ -98,7 +98,7 @@ function TransactionsView() {
         pageNumber: values.pageNumber,
         pageSize: values.pageSize,
       })
-      const filename = contentDisposition?.match(/filename\*?=(?:UTF-8''|")?([^";]+)/i)?.[1] || 'transactions.csv'
+      const filename = contentDisposition?.match(/filename\*?=(?:UTF-8''|")?([^";]+)/i)?.[1] || `transactions.${values.downloadOptions}`
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
