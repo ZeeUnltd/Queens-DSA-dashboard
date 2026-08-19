@@ -1,6 +1,6 @@
 import { BadgeCheck, ChartNoAxesCombined, UsersRound } from 'lucide-react'
-import backdropScenery from '../../assets/backdrop-scenery.png'
-import { kpiFixture } from '../../fixtures/dashboard'
+import backdropScenery from '../../../../assets/backdrop-scenery.png'
+import { kpiFixture } from '../../../../fixtures/dashboard'
 import { Badge } from '@/components/ui/badge'
 
 function KpiPerformanceView() {

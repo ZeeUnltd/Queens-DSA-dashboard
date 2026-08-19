@@ -3,7 +3,8 @@ import { getStoredSession } from '../lib/auth-session'
 
 export const Route = createFileRoute('/dashboard')({
   beforeLoad: () => {
-    if (!getStoredSession()) throw redirect({ to: '/login' })
+    const session = getStoredSession()
+    if (!session) throw redirect({ to: '/login' })
   },
   component: DashboardRoute,
 })

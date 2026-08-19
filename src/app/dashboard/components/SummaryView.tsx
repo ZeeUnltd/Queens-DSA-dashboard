@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { ArrowDownRight, ArrowUpRight, Building2, ChevronDown, ChevronUp, UserRound } from 'lucide-react'
-import { DASHBOARD_COPY, PRODUCT_LABELS } from '../../constants/dashboard'
-import { productCategoriesFixture, totalValuesFixture } from '../../fixtures/dashboard'
-import type { ProductCategory, ProductKey } from '../../types/dashboard'
+import { DASHBOARD_COPY, PRODUCT_LABELS } from '../../../constants/dashboard'
+import { productCategoriesFixture, totalValuesFixture } from '../../../fixtures/dashboard'
+import type { ProductCategory, ProductKey } from '../../../types/dashboard'
 import RelationshipManagerProfile from './RelationshipManagerProfile'
 import {
   Table,

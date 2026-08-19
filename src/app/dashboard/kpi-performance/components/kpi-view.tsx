@@ -1,1 +1,1 @@
-export { default } from '../../../../components/dashboard/KpiPerformanceView'
+export { default } from './KpiPerformanceView'

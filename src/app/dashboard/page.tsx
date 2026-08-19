@@ -1,9 +1,8 @@
 import { useAuth } from '../../context/AuthContext'
-import DsaDashboardView from '../../components/dashboard/DsaDashboardView'
-// import SummaryView from '../../components/dashboard/SummaryView'
+import DsaDashboardView from './components/DsaDashboardView'
 import DashboardShell from '../../components/layout/DashboardShell'
 import { getLandingDashboardView } from '../../lib/dashboard-access' 
-import RmDashboardView from '../../components/dashboard/RmDashboardView'
+import RmDashboardView from './rm-dashboard/components/RmDashboardView'
 
 function DashboardPage() {
   const { session } = useAuth()

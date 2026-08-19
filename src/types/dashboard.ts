@@ -54,6 +54,16 @@ export type RmDsaSummaryRow = {
   count: number
 }
 
+export type RmDsaReportCard = {
+  name: string
+  referralCode: string
+  totalAccounts: number
+  totalInflow: number
+  totalOutflow: number
+  totalSavings: number
+  totalBalances: number
+}
+
 export type TransactionRecord = {
   id: number
   transactionType: string

@@ -1,8 +1,8 @@
 import { MapPin } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { useAuth } from '../../context/AuthContext'
-import { relationshipManagerFixture } from '../../fixtures/dashboard'
+import { useAuth } from '../../../context/AuthContext'
+import { relationshipManagerFixture } from '../../../fixtures/dashboard'
 
 function RelationshipManagerProfile() {
   const manager = relationshipManagerFixture

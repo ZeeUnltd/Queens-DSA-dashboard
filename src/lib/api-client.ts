@@ -1,6 +1,6 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
 import type { ApiEnvelope, AuthData, AuthResponse, LoginRequest, RefreshTokenRequest } from '../types/auth'
-import type { DsaTopCard, ExportTransactionsParams, GetTransactionsParams, RmDsaSummaryRow, TransactionsPage } from '../types/dashboard'
+import type { DsaTopCard, ExportTransactionsParams, GetTransactionsParams, RmDsaReportCard, RmDsaSummaryRow, TransactionsPage } from '../types/dashboard'
 import {
   clearAuthSession,
   getAccessToken,
@@ -100,6 +100,12 @@ export async function getRmDsaSummary() {
   return response.data.data
 }
 
+export async function getRmDsaReportCards() {
+  const response = await apiClient.get<ApiEnvelope<RmDsaReportCard[]>>('/api/dashboard/GetAllDSAReportCards')
+  if (!response.data.isSuccess) throw new Error(response.data.message || 'Unable to load dashboard summary')
+  return response.data.data
+}
+
 export async function getTransactions({
   pageNumber,
   pageSize,
@@ -131,7 +137,22 @@ export async function exportTransactions({ downloadOptions, transactionStartDate
       PageSize: pageSize,
     },
     responseType: 'blob',
+    validateStatus: () => true,
   })
+
+  if (response.data.type.includes('json') || response.status >= 400) {
+    let payload: { isSuccess?: boolean; message?: string }
+    try {
+      payload = JSON.parse(await response.data.text()) as { isSuccess?: boolean; message?: string }
+    } catch {
+      throw new Error('Unable to export transactions')
+    }
+    if (payload.isSuccess === false) throw new Error(payload.message || 'Unable to export transactions')
+    if (response.status >= 400) throw new Error(payload.message || 'Unable to export transactions')
+  }
+
+  if (response.status >= 400) throw new Error('Unable to export transactions')
+
   return {
     blob: response.data,
     contentDisposition: response.headers['content-disposition'],

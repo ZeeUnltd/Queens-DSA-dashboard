@@ -1,1 +1,1 @@
-export { default } from '../../../../components/dashboard/TransactionsView'
+export { default } from '../../transactions/components/TransactionsView'

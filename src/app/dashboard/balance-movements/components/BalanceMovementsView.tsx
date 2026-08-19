@@ -1,7 +1,7 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
-import { balanceMovementsFixture } from '../../fixtures/dashboard'
+import { balanceMovementsFixture } from '../../../../fixtures/dashboard'
 import { Badge } from '@/components/ui/badge'
-import { formatCurrency } from './dashboard-formatters'
+import { formatCurrency } from '../../components/dashboard-formatters'
 
 function BalanceMovementsView() {
   return (
