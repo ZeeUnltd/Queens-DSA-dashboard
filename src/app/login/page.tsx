@@ -5,6 +5,9 @@ function LoginPage() {
   return (
     <AuthShell>
       <LoginForm />
+      <span className="text-sm text-gray-500">
+        v-1.0.0
+      </span> 
     </AuthShell>
   )
 }
