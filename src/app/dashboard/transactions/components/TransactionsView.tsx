@@ -38,6 +38,10 @@ function formatDateRange(start: string, end: string) {
   return `${formatter.format(new Date(`${start}T00:00:00`))} - ${formatter.format(new Date(`${end}T00:00:00`))}`
 }
 
+function sanitizeDownloadFilename(filename: string) {
+  return filename.replace(/[\\/:*?"<>|]/g, '-').trim() || 'transactions'
+}
+
 function TransactionsView() {
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
@@ -89,7 +93,7 @@ function TransactionsView() {
     setIsExporting(true)
     setExportError(null)
     try {
-      const { blob, contentDisposition } = await exportTransactions({
+      const { blob, fileName } = await exportTransactions({
         downloadOptions: values.downloadOptions,
         transactionStartDate: `${values.startDate}T00:00:00`,
         transactionEndDate: `${values.endDate}T23:59:59.999`,
@@ -98,7 +102,7 @@ function TransactionsView() {
         pageNumber: values.pageNumber,
         pageSize: values.pageSize,
       })
-      const filename = contentDisposition?.match(/filename\*?=(?:UTF-8''|")?([^";]+)/i)?.[1] || `transactions.${values.downloadOptions}`
+      const filename = sanitizeDownloadFilename(fileName || `transactions.${values.downloadOptions}`)
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url

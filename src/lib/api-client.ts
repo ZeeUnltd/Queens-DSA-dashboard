@@ -141,7 +141,7 @@ export async function exportTransactions({ downloadOptions, transactionStartDate
   })
 
   if (response.data.type.includes('json') || response.status >= 400) {
-    let payload: { isSuccess?: boolean; message?: string }
+    let payload: { isSuccess?: boolean; message?: string; data?: { data?: string; fileName?: string; fileType?: string } }
     try {
       payload = JSON.parse(await response.data.text()) as { isSuccess?: boolean; message?: string }
     } catch {
@@ -149,13 +149,24 @@ export async function exportTransactions({ downloadOptions, transactionStartDate
     }
     if (payload.isSuccess === false) throw new Error(payload.message || 'Unable to export transactions')
     if (response.status >= 400) throw new Error(payload.message || 'Unable to export transactions')
+
+    if (!payload.data?.data) throw new Error('Unable to export transactions')
+
+    const binary = atob(payload.data.data)
+    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0))
+    return {
+      blob: new Blob([bytes], { type: payload.data.fileType || 'application/octet-stream' }),
+      fileName: payload.data.fileName,
+      fileType: payload.data.fileType,
+    }
   }
 
   if (response.status >= 400) throw new Error('Unable to export transactions')
 
   return {
     blob: response.data,
-    contentDisposition: response.headers['content-disposition'],
+    fileName: undefined,
+    fileType: response.data.type,
   }
 }
 
