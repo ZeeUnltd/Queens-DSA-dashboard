@@ -1,0 +1,56 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/otp",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/create-password",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/reset-password",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/password-reset-success",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/all-dsas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/balance-movements",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/kpi-performance",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/rm-dashboard",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/transactions",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

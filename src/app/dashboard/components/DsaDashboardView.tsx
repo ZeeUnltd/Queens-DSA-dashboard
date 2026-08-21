@@ -44,13 +44,12 @@ function DsaDashboardView() {
       : null}
       {!isPending && error ? <p className="rounded-xl border border-[#f3cccc] bg-[#fff6f6] p-4 text-sm text-qm-brand" role="alert">{error}</p> : null}
       {!isPending && !error ? <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {cards.map(({ title, value, icon: Icon, featured }) => (
-          <article  style={title === 'Total Accounts Opened' ? { backgroundImage: `linear-gradient(rgba(182, 0, 0, 0.88), rgba(182, 0, 0, 0.88)), url(${backdropScenery})`, backgroundSize: '100px' } : {}} 
-
-          className={`min-h-37 rounded-2xl border p-5  ${featured ? 'border-qm-brand bg-qm-brand text-white' : 'border-[#eeeeee] bg-white text-qm-ink'}`} 
+        {cards.map(({ title, value, icon: Icon }) => (
+          <article style={{ backgroundImage: `linear-gradient(rgba(182, 0, 0, 0.88), rgba(182, 0, 0, 0.88)), url(${backdropScenery})`, backgroundSize: '100px' }}
+          className="min-h-37 rounded-2xl border border-qm-brand bg-qm-brand p-5 text-white"
           
           key={title}>
-            <div className={`flex items-center gap-2 text-xs ${featured ? 'text-white' : 'text-qm-muted'}`}>
+            <div className="flex items-center gap-2 text-xs text-white">
               {title === 'Total Balance' ? <button className="rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-qm-brand/40" type="button" aria-label={isBalanceVisible ? 'Hide total balance' : 'Show total balance'} aria-pressed={isBalanceVisible} onClick={() => setIsBalanceVisible((visible) => !visible)}>
                 {isBalanceVisible ? <Eye className="h-5 w-5" aria-hidden="true" /> : <EyeOff className="h-5 w-5" aria-hidden="true" />}
               </button> : <Icon className="h-5 w-5" aria-hidden="true" />}

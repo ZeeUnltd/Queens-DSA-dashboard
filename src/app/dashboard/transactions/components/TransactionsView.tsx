@@ -148,7 +148,7 @@ function TransactionsView() {
             <TableHead className="text-[10px] text-qm-muted">Beneficiary Account</TableHead>
             <TableHead className="text-[10px] text-qm-muted">Type</TableHead>
             <TableHead className="text-right text-[10px] text-qm-muted">Amount</TableHead>
-            <TableHead className="text-right text-[10px] text-qm-muted">Charges</TableHead>
+            {/* <TableHead className="text-right text-[10px] text-qm-muted">Charges</TableHead> */}
             <TableHead className="text-[10px] text-qm-muted">Status</TableHead>
             <TableHead className="text-[10px] text-qm-muted">Product</TableHead>
             <TableHead className="text-[10px] text-qm-muted">Transaction Reference</TableHead>
@@ -163,7 +163,7 @@ function TransactionsView() {
                 <TableCell className="text-sm">{transaction.beneficiaryAccount || '—'}</TableCell>
                 <TableCell><Badge className={getTransactionTypeClassName(transaction)}>{getTransactionTypeLabel(transaction)}</Badge></TableCell>
                 <TableCell className="text-right text-sm font-medium">{formatCurrency(transaction.amount)}</TableCell>
-                <TableCell className="text-right text-sm">{formatCurrency(transaction.charges)}</TableCell>
+                {/* <TableCell className="text-right text-sm">{formatCurrency(transaction.charges)}</TableCell> */}
                 <TableCell><Badge className={getTransactionStatusClassName(transaction)}>{transaction.transactionStatus || transaction.status || 'Unknown'}</Badge></TableCell>
                 <TableCell className="text-sm">{transaction.productType || '—'}</TableCell>
                 <TableCell className="max-w-[220px]">

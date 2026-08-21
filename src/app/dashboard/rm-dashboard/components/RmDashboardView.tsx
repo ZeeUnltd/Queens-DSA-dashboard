@@ -44,11 +44,15 @@ function RmDashboardView() {
 
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
 
-          {cards.map(({ title, value, icon: Icon, featured, isCurrency }) =>
+          {cards.map(({ title, value, icon: Icon, isCurrency }) =>
 
-            <article style={featured ? { backgroundImage: `linear-gradient(rgba(182, 0, 0, 0.88), rgba(182, 0, 0, 0.88)), url(${backdropScenery})`, backgroundSize: '100px' } : {}} className={`min-h-37 rounded-2xl border p-5 ${featured ? 'border-qm-brand bg-qm-brand text-white' : 'border-[#eeeeee] bg-white text-qm-ink'}`} key={title}>
+            <article 
+            
+            style={true ? { backgroundImage: `linear-gradient(rgba(182, 0, 0, 0.88), rgba(182, 0, 0, 0.88)), url(${backdropScenery})`, backgroundSize: '100px' } : {}} 
+            
+            className={`min-h-37 rounded-2xl border p-5 ${true ? 'border-qm-brand bg-qm-brand text-white' : 'border-[#eeeeee] bg-white text-qm-ink'}`} key={title}>
 
-              <div className={`flex items-center gap-2 text-xs ${featured ? 'text-white' : 'text-qm-muted'}`}><Icon className="h-5 w-5" aria-hidden="true" />
+              <div className="flex items-center gap-2 text-xs text-white"><Icon className="h-5 w-5" aria-hidden="true" />
                 <span>{title}</span>
               </div>
               <strong className="mt-4 block text-2xl font-bold">{isCurrency ? formatCurrency(value) : value.toLocaleString('en-NG')}</strong>
